@@ -1,12 +1,23 @@
-import React from 'react'
-import StartUi from './components/StartUi'
+import { useState } from "react";
+import GameScreen from "./components/GameScreen";
+import StartScreen from "./components/StartUi";
 
-const App = () => {
+
+
+function App() {
+  const [screen, setScreen] = useState("start"); // start | game
+
   return (
-    <div>
-      < StartUi />
-    </div>
-  )
+    <>
+      {screen === "start" && (
+        <StartScreen onStart={() => setScreen("game")} />
+      )}
+
+      {screen === "game" && (
+        <GameScreen onEnd={() => setScreen("start")} />
+      )}
+    </>
+  );
 }
 
-export default App
+export default App;
